@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import About from './components/About'
 import Experience from './components/Experience'
 import Footer from './components/Footer'
 import GitHub from './components/GitHub'
@@ -78,7 +77,6 @@ function App() {
       </nav>
       <main>
       <AnimatedSection id="hero" sectionRef={heroRef}><Hero /></AnimatedSection>
-      <AnimatedSection><About /></AnimatedSection>
       <AnimatedSection><Experience /></AnimatedSection>
       <AnimatedSection><Projects /></AnimatedSection>
       <AnimatedSection><GitHub /></AnimatedSection>

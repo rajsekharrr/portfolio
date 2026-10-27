@@ -1,10 +1,4 @@
 import { useEffect, useState } from 'react'
-import {
-  FaEnvelope,
-  FaGithub,
-  FaLinkedin,
-  FaXTwitter,
-} from 'react-icons/fa6'
 
 const phrases = [
   'Agentic AI Engineer',
@@ -23,6 +17,7 @@ function Hero() {
   const [phraseIndex, setPhraseIndex] = useState(0)
   const [typedText, setTypedText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
+  const [showEmail, setShowEmail] = useState(false)
 
   useEffect(() => {
     const phrase = phrases[phraseIndex]
@@ -82,50 +77,66 @@ function Hero() {
         <span>{typedText}</span>
         <span className="hero__cursor" aria-hidden="true">|</span>
       </p>
-      <p className="hero__intro">
-        I build AI systems that do more than talk back.
-        <br />
-        VIT Chennai · CSE (AI & ML) · Class of 2027
-      </p>
-      <nav className="hero__socials" aria-label="Social links">
-        <a
-          className="hero__icon-button"
-          href="https://github.com/rajsekharrr"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-        >
-          <FaGithub />
-        </a>
-        <a
-          className="hero__icon-button"
-          href="https://linkedin.com/in/rajsekhar-roy"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-        >
-          <FaLinkedin />
-        </a>
-        <a
-          className="hero__icon-button"
-          href="https://x.com/snapcallin"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="X"
-          title="Not that X. The other one."
-        >
-          <FaXTwitter />
-        </a>
-        <a
-          className="hero__icon-button"
-          href="mailto:royrajsekhar.is@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Email"
-        >
-          <FaEnvelope />
-        </a>
-      </nav>
+      <div className="hero__intro">
+        <p>
+          Hi, I&apos;m an Agentic AI engineer who builds useful things, makes interfaces look nice,
+          and occasionally declares a project almost done.
+        </p>
+        <p>
+          Don&apos;t be surprised if I{' '}
+          <button
+            className="hero__inline-action"
+            type="button"
+            onClick={() => setShowEmail(true)}
+          >
+            cold email you
+          </button>{' '}
+          and ask about internships. I come prepared with a portfolio, a GitHub tab, and
+          unreasonable optimism.
+          {showEmail && (
+            <span className="hero__email-reveal">
+              <a href="mailto:royrajsekhar.is@gmail.com">royrajsekhar.is@gmail.com</a>
+            </span>
+          )}
+        </p>
+        <p>
+          You can find time lapses of me not studying for hours at{' '}
+          <a href="https://x.com/snapcallin" target="_blank" rel="noopener noreferrer">
+            X (@snapcallin)
+          </a>
+          . Recently, I pledged to contribute to{' '}
+          <a href="https://github.com/rajsekharrr" target="_blank" rel="noopener noreferrer">
+            GitHub (@rajsekharrr)
+          </a>{' '}
+          every day, which is either discipline or a very public challenge.
+        </p>
+        <p>
+          I don&apos;t have Instagram. I use{' '}
+          <a href="https://linkedin.com/in/rajsekhar-roy" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>{' '}
+          instead. It saves me from brainrot and somehow makes me put my phone down, istg.
+        </p>
+        <p>
+          I like making AI handle the boring parts of work. These days, that means agents
+          routing leads, drafting reports, searching messy knowledge bases, and keeping things
+          moving without someone babysitting every step. LangGraph, LangChain, RAG, and a
+          suspicious amount of debugging are usually involved.
+        </p>
+        <p>
+          CSE (AI &amp; ML) undergrad at VIT Chennai, graduating in 2027.
+        </p>
+        <p>
+          Hiring?{' '}
+          <a
+            className="hero__inline-action"
+            href="mailto:royrajsekhar.is@gmail.com"
+          >
+            Reach out
+          </a>
+          . I&apos;d love to hear what you&apos;re building.
+        </p>
+      </div>
       <div className="hero__actions">
         <button
           className="hero__cta"

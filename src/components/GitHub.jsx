@@ -22,8 +22,8 @@ function GitHub() {
             username="rajsekharrr"
             colorScheme="light"
             blockSize={12}
-            blockMargin={4}
-            fontSize={13}
+            blockMargin={3}
+            fontSize={12}
             theme={{
               light: ['#f0f0f0', '#c7d7ff', '#91b4ff', '#4d86ff', '#0057FF'],
             }}

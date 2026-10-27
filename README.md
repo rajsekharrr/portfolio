@@ -83,7 +83,6 @@ The SPA rewrite is defined in [`vercel.json`](./vercel.json).
 ```text
 src/
 ├── components/
-│   ├── About.jsx
 │   ├── Experience.jsx
 │   ├── Footer.jsx
 │   ├── GitHub.jsx

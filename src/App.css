@@ -71,10 +71,14 @@ img {
 body {
   background: var(--bg);
   background-image:
-    linear-gradient(rgba(110, 104, 88, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(110, 104, 88, 0.07) 1px, transparent 1px),
-    radial-gradient(circle, rgba(110, 104, 88, 0.2) 1px, transparent 1px);
-  background-size: 32px 32px, 32px 32px, 16px 16px;
+    radial-gradient(ellipse at 50% 12%, rgba(255, 255, 255, 0.72), transparent 58%),
+    radial-gradient(ellipse at 50% 100%, rgba(194, 183, 155, 0.15), transparent 52%),
+    repeating-linear-gradient(0deg, rgba(110, 104, 88, 0.025) 0, rgba(110, 104, 88, 0.025) 1px, transparent 1px, transparent 5px),
+    linear-gradient(rgba(110, 104, 88, 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(110, 104, 88, 0.065) 1px, transparent 1px),
+    radial-gradient(circle, rgba(110, 104, 88, 0.17) 1px, transparent 1px);
+  background-attachment: fixed;
+  background-size: auto, auto, auto, 32px 32px, 32px 32px, 16px 16px;
   color: var(--text);
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
@@ -85,7 +89,8 @@ body {
 main {
   max-width: 860px;
   margin: 0 auto;
-  background: rgba(250, 248, 241, 0.58);
+  background: rgba(250, 248, 241, 0.64);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.42), 0 18px 50px rgba(110, 104, 88, 0.06);
 }
 
 section {
@@ -373,7 +378,18 @@ section {
 
 .github__calendar {
   margin-top: 1.5rem;
-  overflow-x: auto;
+  width: 100%;
+  overflow: visible;
+}
+
+.github__calendar .react-activity-calendar__scroll-container {
+  overflow: visible !important;
+}
+
+.github__calendar .react-activity-calendar__calendar {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .github__profile-link {
@@ -613,8 +629,59 @@ section {
 }
 
 .hero__intro {
+  max-width: 650px;
   margin-top: 1.25rem;
   color: var(--text-muted);
+  text-align: left;
+}
+
+.hero__intro p {
+  margin-bottom: 0.8rem;
+  line-height: 1.7;
+}
+
+.hero__intro p:last-child {
+  margin-bottom: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.hero__intro a {
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+
+.hero__intro a:hover,
+.hero__intro a:focus-visible {
+  color: var(--accent-dark);
+  text-decoration-style: solid;
+}
+
+.hero__inline-action {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+
+.hero__inline-action:hover,
+.hero__inline-action:focus-visible {
+  color: var(--accent-dark);
+  text-decoration-style: solid;
+}
+
+.hero__email-reveal {
+  display: block;
+  margin-top: 0.35rem;
 }
 
 .hero__socials {
