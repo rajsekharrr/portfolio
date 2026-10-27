@@ -59,7 +59,9 @@ function Footer() {
             {emailCopied ? <FaCheck /> : <FaRegCopy />}
           </button>
           <span aria-hidden="true">·</span>
-          <span>+91 99888 77689</span>
+          <a className="footer__phone" href="tel:+919988877689">
+            +91 99888 77689
+          </a>
         </div>
       </div>
       <nav className="footer__socials" aria-label="Footer social links">
@@ -82,15 +84,13 @@ function Footer() {
         <p>{visitDate}</p>
         <p>{visitTime} GMT+5:30</p>
         <p>
-          Built by Rajsekhar Singha Roy. The source code is available on{' '}
           <a
-            href="https://github.com/rajsekharrr"
+            href="https://github.com/rajsekharrr/portfolio"
             target="_blank"
             rel="noopener noreferrer"
           >
-            GitHub
+            rajsekharrr/portfolio
           </a>
-          .
         </p>
       </div>
     </footer>

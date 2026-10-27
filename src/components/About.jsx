@@ -3,15 +3,16 @@ function About() {
     <div className="about">
       <h2 className="section-label">ABOUT</h2>
       <div className="about__copy">
-        <p>I build AI systems that actually do things — not just answer questions.</p>
+        <p>I like making AI do the boring parts of work so people can get on with the interesting stuff.</p>
         <p>
-          My work sits at the intersection of LangGraph orchestration, RAG pipelines, and
-          enterprise automation: agents that route leads, draft reports, and run research
-          workflows end-to-end without a human in the loop.
+          Most of my time goes into agents that route leads, draft reports, search messy
+          knowledge bases, and keep a workflow moving without someone babysitting every step.
+          LangGraph, LangChain, RAG, and a suspicious amount of debugging make that happen.
         </p>
         <p>
-          Final-year CSE (AI &amp; ML) student at VIT Chennai, graduating July 2027. Open to
-          full-time Agentic AI / GenAI engineering roles.
+          I&apos;m a CSE student at VIT Chennai, graduating in 2027, and I&apos;m looking for a
+          full time role in Agentic AI or GenAI. If it involves useful software and a little
+          healthy chaos, I&apos;m interested.
         </p>
       </div>
     </div>

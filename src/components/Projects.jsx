@@ -5,14 +5,14 @@ const projects = [
     name: 'LegalRAG',
     date: 'March 2026',
     tags: ['LangChain', 'FAISS', 'RAG', 'LLMs'],
-    description: 'RAG pipeline over Indian Supreme Court judgments — grounded retrieval, citation linking, and RAG evaluation to surface relevant case law and reduce hallucinations.',
+    description: 'A legal search tool for Indian Supreme Court judgments. It finds relevant case law, links the citations, and checks its own retrieval so the answer is more useful and less made up.',
     href: 'https://github.com/rajsekharrr/Legal-RAG-Indian-Judgments',
   },
   {
     name: 'GestureLec',
     date: 'April 2026',
     tags: ['OpenCV', 'MediaPipe', 'Whisper', 'FLAN-T5', 'GPT'],
-    description: 'Real-time gesture recognition for hands-free media control plus automated lecture pipeline covering transcription, chapter detection, summarization, and notes. Reduced post-lecture study prep time by 2×.',
+    description: 'Control media with hand gestures, then turn a lecture into a transcript, chapters, summary, and notes. Basically, less scrubbing through recordings and more actual studying.',
     href: 'https://github.com/rajsekharrr/Gesture_Lect',
   },
 ]
@@ -50,11 +50,10 @@ function Projects() {
         </div>
         <ProjectTags tags={['LangGraph', 'LangChain', 'Multi-Agent', 'RAG', 'Autonomous Agents']} />
         <p className="project-card__description">
-          A 6-agent autonomous research system with specialized agents for financial research,
-          market analysis, news intelligence, risk analysis, portfolio reasoning, and report
-          generation. Implements agent orchestration, tool calling, stateful workflows,
-          agent-to-agent handoffs, and structured outputs — delivering citation-grounded
-          investment reports end-to-end.
+          Six specialist agents take on the parts of equity research that usually require a
+          dozen tabs and a heroic amount of copy paste. They research markets, news, risk,
+          portfolios, and then turn it all into a citation grounded investment report.
+          LangGraph handles the handoffs, tools, memory, and structured output.
         </p>
         <GithubLink href="https://github.com/rajsekharrr/Multi-agent-equity-research" />
         <div className="project-card__tech-strip" aria-hidden="true">

@@ -6,9 +6,9 @@ function Experience() {
       descriptor: 'Salesforce Global Consulting Partner',
       dates: 'May 2026 – Jun 2026',
       bullets: [
-        'Deployed production autonomous AI agents on Salesforce Agentforce 360 using the Einstein AI reasoning engine and LangChain orchestration, executing context-aware enterprise CRM operations end-to-end with zero manual handoffs.',
-        'Engineered modular agentic workflows mapping Salesforce Actions to native Flows and external REST APIs, automating the full intake-to-routing pipeline — eliminating all manual handoff steps.',
-        'Applied structured prompting to enforce multi-step reasoning, maintain context across agent turns, and implement graceful fallback handling for production edge cases.',
+        'Shipped autonomous agents on Salesforce Agentforce 360 that handled real CRM work with Einstein AI and LangChain, without needing a human to pass the baton every few seconds.',
+        'Connected Salesforce Actions, native Flows, and REST APIs into one intake and routing workflow. Fewer handoffs, fewer tabs, much less ritual.',
+        'Built prompts that kept context across agent turns and gave the system a sensible fallback when production decided to get creative.',
       ],
     },
     {
@@ -17,8 +17,8 @@ function Experience() {
       descriptor: 'Cisco Gold Partner',
       dates: 'May 2025 – Jul 2025',
       bullets: [
-        'Architected and deployed 3 enterprise GenAI assistants in Python, FastAPI, and LangChain with full RAG pipelines backed by vector databases, grounding LLM responses in internal knowledge bases.',
-        'Applied domain-specific fine-tuning on base LLMs and exposed RAG-augmented models through modular RESTful microservices aligned with enterprise client-report drafting workflows.',
+        'Built and shipped three GenAI assistants with Python, FastAPI, LangChain, and RAG pipelines backed by vector databases, so answers came from company knowledge instead of vibes.',
+        'Fine tuned models for specific domains and wrapped them in REST services that helped enterprise teams draft client reports faster.',
       ],
     },
     {
@@ -26,8 +26,8 @@ function Experience() {
       company: 'Tribal Wolf',
       dates: 'Jan 2025 – Mar 2025',
       bullets: [
-        'Built and shipped production web features using React.js, Node.js, and PostgreSQL.',
-        'Integrated secure third-party payment gateways and optimized backend query performance under concurrent user load.',
+        'Built and shipped production features with React, Node, and PostgreSQL.',
+        'Added secure payment integrations and cleaned up backend queries so the app stayed quick when more users showed up.',
       ],
     },
   ]

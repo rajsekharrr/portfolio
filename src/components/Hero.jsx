@@ -83,9 +83,9 @@ function Hero() {
         <span className="hero__cursor" aria-hidden="true">|</span>
       </p>
       <p className="hero__intro">
-        Building autonomous AI systems that replace manual workflows.
+        I build AI systems that do more than talk back.
         <br />
-        VIT Chennai · Graduating July 2027
+        VIT Chennai · CSE (AI & ML) · Class of 2027
       </p>
       <nav className="hero__socials" aria-label="Social links">
         <a
@@ -134,7 +134,7 @@ function Hero() {
             behavior: 'smooth',
           })}
         >
-          View my work
+          See what I built
         </button>
         <a
           className="hero__resume"

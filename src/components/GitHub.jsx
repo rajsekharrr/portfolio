@@ -7,7 +7,7 @@ function GitHub() {
   return (
     <section id="github" className="github">
       <h2 className="section-label">GITHUB</h2>
-      <h3 className="github__heading">What I've been shipping</h3>
+      <h3 className="github__heading">A little proof that I do, in fact, ship things</h3>
       <div className="github__stats">
         <div className="github__row">
           <div className="github__image-container">
