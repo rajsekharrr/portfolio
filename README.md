@@ -78,9 +78,38 @@ This project is configured for Vercel:
 
 The SPA rewrite is defined in [`vercel.json`](./vercel.json).
 
+### Live visitor counter
+
+The footer includes an anonymous live visitor counter backed by Upstash Redis. It
+refreshes every 30 seconds and considers a visitor active for 90 seconds after
+their last heartbeat. No names, email addresses, IP addresses, or fingerprint
+data are stored. The total visitor count uses Redis HyperLogLog, so it is an
+approximation.
+
+To enable it:
+
+1. Create a Redis database at [Upstash](https://console.upstash.com/).
+2. Copy its REST URL and REST token.
+3. Add `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` to Vercel under
+   **Project Settings → Environment Variables** for Production.
+4. Add the same values to a local `.env` file when testing with Vercel dev.
+
+The API endpoint is [`api/visitors.js`](./api/visitors.js). Without the
+environment variables, the portfolio continues working and simply hides the
+visitor count.
+
+### Custom domain
+
+To use `rajsekhar.tech`, add `rajsekhar.tech` and `www.rajsekhar.tech` under
+**Vercel → Project Settings → Domains**, then copy the exact DNS records Vercel
+provides into your domain registrar. Vercel provisions HTTPS automatically once
+DNS verification completes.
+
 ## Project structure
 
 ```text
+api/
+└── visitors.js
 src/
 ├── components/
 │   ├── Experience.jsx

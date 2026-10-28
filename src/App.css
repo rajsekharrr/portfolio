@@ -353,29 +353,6 @@ section {
   margin-top: 1.5rem;
 }
 
-.github__row {
-  display: flex;
-  gap: 1.25rem;
-}
-
-.github__image-container {
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background: var(--surface);
-}
-
-.github__row .github__image-container {
-  flex: 1;
-}
-
-.github__image-container img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
 .github__calendar {
   margin-top: 1.5rem;
   width: 100%;
@@ -502,6 +479,10 @@ section {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
   line-height: 1.7;
+}
+
+.footer__signature p:first-child {
+  color: var(--accent);
 }
 
 .footer__signature a {
@@ -796,10 +777,6 @@ section {
 }
 
 @media (max-width: 639px) {
-  .github__row {
-    flex-direction: column;
-  }
-
   .sticky-nav {
     gap: 0.8rem;
   }

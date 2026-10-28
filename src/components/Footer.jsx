@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   FaEnvelope,
   FaGithub,
@@ -10,6 +10,8 @@ import {
 
 function Footer() {
   const [emailCopied, setEmailCopied] = useState(false)
+  const [activeVisitors, setActiveVisitors] = useState(null)
+  const [totalVisitors, setTotalVisitors] = useState(null)
   const currentDate = new Date()
   const visitDate = currentDate.toLocaleDateString('en-US', {
     weekday: 'short',
@@ -25,6 +27,48 @@ function Footer() {
     hour12: false,
     timeZone: 'Asia/Kolkata',
   })
+
+  useEffect(() => {
+    let visitorId = window.localStorage.getItem('portfolio-visitor-id')
+
+    if (!visitorId) {
+      visitorId = window.crypto.randomUUID()
+      window.localStorage.setItem('portfolio-visitor-id', visitorId)
+    }
+
+    let cancelled = false
+
+    const updateVisitorCount = async () => {
+      try {
+        const response = await fetch('/api/visitors', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ visitorId }),
+        })
+
+        if (!response.ok) {
+          return
+        }
+
+        const data = await response.json()
+
+        if (!cancelled) {
+          setActiveVisitors(data.activeVisitors)
+          setTotalVisitors(data.totalVisitors)
+        }
+      } catch (error) {
+        console.error('Unable to load visitor count.', error)
+      }
+    }
+
+    updateVisitorCount()
+    const intervalId = window.setInterval(updateVisitorCount, 30_000)
+
+    return () => {
+      cancelled = true
+      window.clearInterval(intervalId)
+    }
+  }, [])
 
   const copyEmail = async () => {
     try {
@@ -80,7 +124,12 @@ function Footer() {
       </nav>
       <p className="footer__copyright">© 2026 Rajsekhar Singha Roy</p>
       <div className="footer__signature">
-        <p>You&apos;re the 6,481st visitor</p>
+        {activeVisitors !== null && (
+          <p>
+            {activeVisitors} {activeVisitors === 1 ? 'visitor' : 'visitors'} online
+            {totalVisitors !== null && ` · ${totalVisitors} total`}
+          </p>
+        )}
         <p>{visitDate}</p>
         <p>{visitTime} GMT+5:30</p>
         <p>
