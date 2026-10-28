@@ -1,14 +1,14 @@
-import { Redis } from '@upstash/redis'
-
-const ACTIVE_WINDOW_MS = 90_000
 const VISITOR_ID_PATTERN = /^[a-zA-Z0-9-]{16,80}$/
 
-function getRedis() {
-  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
+function getSupabaseConfig() {
+  if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
     throw new Error('Visitor counter is not configured.')
   }
 
-  return Redis.fromEnv()
+  return {
+    url: process.env.SUPABASE_URL.replace(/\/+$/, ''),
+    key: process.env.SUPABASE_SERVICE_ROLE_KEY,
+  }
 }
 
 export default async function handler(request, response) {
@@ -26,24 +26,36 @@ export default async function handler(request, response) {
   }
 
   try {
-    const redis = getRedis()
-    const now = Date.now()
-    const cutoff = now - ACTIVE_WINDOW_MS
-
-    await redis.zadd('portfolio:active-visitors', {
-      score: now,
-      member: visitorId,
+    const { url, key } = getSupabaseConfig()
+    const supabaseResponse = await fetch(`${url}/rest/v1/rpc/record_visitor`, {
+      method: 'POST',
+      headers: {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ p_visitor_id: visitorId }),
     })
-    await redis.zremrangebyscore('portfolio:active-visitors', 0, cutoff)
-    await redis.pfadd('portfolio:unique-visitors', visitorId)
 
-    const [activeVisitors, totalVisitors] = await Promise.all([
-      redis.zcard('portfolio:active-visitors'),
-      redis.pfcount('portfolio:unique-visitors'),
-    ])
+    if (!supabaseResponse.ok) {
+      const details = await supabaseResponse.text()
+      throw new Error(`Supabase request failed: ${details}`)
+    }
+
+    const counts = await supabaseResponse.json()
+
+    if (
+      typeof counts.activeVisitors !== 'number'
+      || typeof counts.totalVisitors !== 'number'
+    ) {
+      throw new Error('Supabase returned an invalid visitor count.')
+    }
 
     response.setHeader('Cache-Control', 'no-store')
-    return response.status(200).json({ activeVisitors, totalVisitors })
+    return response.status(200).json({
+      activeVisitors: counts.activeVisitors,
+      totalVisitors: counts.totalVisitors,
+    })
   } catch (error) {
     console.error('Unable to update visitor count.', error)
     return response.status(503).json({ error: 'Visitor counter unavailable.' })

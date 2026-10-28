@@ -80,23 +80,32 @@ The SPA rewrite is defined in [`vercel.json`](./vercel.json).
 
 ### Live visitor counter
 
-The footer includes an anonymous live visitor counter backed by Upstash Redis. It
+The footer includes an anonymous live visitor counter backed by Supabase. It
 refreshes every 30 seconds and considers a visitor active for 90 seconds after
 their last heartbeat. No names, email addresses, IP addresses, or fingerprint
-data are stored. The total visitor count uses Redis HyperLogLog, so it is an
-approximation.
+data are stored.
 
 To enable it:
 
-1. Create a Redis database at [Upstash](https://console.upstash.com/).
-2. Copy its REST URL and REST token.
-3. Add `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` to Vercel under
+1. Open the Supabase SQL Editor and run [`supabase/schema.sql`](./supabase/schema.sql).
+2. Add `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to Vercel under
    **Project Settings → Environment Variables** for Production.
-4. Add the same values to a local `.env` file when testing with Vercel dev.
+3. Use `https://raskkklesfrkpjdstlfd.supabase.co` as `SUPABASE_URL`.
+4. Copy the Supabase **service_role** key into `SUPABASE_SERVICE_ROLE_KEY`.
+5. Add the same values to a local `.env` file when testing with Vercel dev.
+6. Select both **Production** and **Preview** environments if you are testing a
+   `vercel.app` deployment URL, then redeploy.
 
-The API endpoint is [`api/visitors.js`](./api/visitors.js). Without the
+The API endpoint is [`api/visitors.js`](./api/visitors.js). The service role key
+is used only by this server-side endpoint. Never prefix it with `VITE_` or put
+it in React code. Without the
 environment variables, the portfolio continues working and simply hides the
 visitor count.
+
+If the browser Network tab shows `POST /api/visitors` returning `503`, check
+that the SQL file was run, the service role key was copied without extra
+quotes/spaces, and the variables were added to the environment where the
+deployment exists. Environment variable changes require a new deployment.
 
 ### Custom domain
 
